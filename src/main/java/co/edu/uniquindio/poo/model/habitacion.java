@@ -24,8 +24,7 @@ public class Habitacion {
         this.estadoHabitacion = estadoHabitacion;
     }
 
-    public int getNumeroHabitacion() {
-        return numeroHabitacion;
+    public int getNumeroHabitacion() {return numeroHabitacion;
     }
 
     public void setNumeroHabitacion(int numeroHabitacion) {
@@ -52,8 +51,7 @@ public class Habitacion {
         return capacidadMaxima;
     }
 
-    public void setCapacidadMaxima(int capacidadMaxima) {
-        this.capacidadMaxima = capacidadMaxima;
+    public void setCapacidadMaxima(int capacidadMaxima) {this.capacidadMaxima = capacidadMaxima;
     }
 
     public double getPrecioPorNoche() {
