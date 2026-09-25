@@ -1,7 +1,7 @@
 package co.edu.uniquindio.poo.model;
 
 
-public class habitacion {
+public class Habitacion {
 
     private int numeroHabitacion;
     private int piso;

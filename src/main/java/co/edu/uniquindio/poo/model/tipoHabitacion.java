@@ -1,7 +1,7 @@
 package co.edu.uniquindio.poo.model;
 
 
-public enum tipoHabitacion {
+public enum TipoHabitacion {
     SENCILLA,
     DOBLE,
     SUITE,

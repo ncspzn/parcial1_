@@ -1,6 +1,6 @@
 package co.edu.uniquindio.poo.model;
 
-public class huesped {
+public class Huesped {
 
     private String id;
     private String nombreCompleto;
