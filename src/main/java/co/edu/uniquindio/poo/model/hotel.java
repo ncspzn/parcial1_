@@ -14,6 +14,8 @@ public class Hotel {
     private List<Habitacion> listaHabitaciones;
     private List<Reserva> listaReservas;
 
+    private int[] ocupacionSemanal;
+
     public Hotel(String nombreComercial,
                  String nit,
                  String direccion,
@@ -24,68 +26,29 @@ public class Hotel {
         this.direccion = direccion;
         this.telefono = telefono;
 
-        this.listaHuespedes = new ArrayList<>();
-        this.listaHabitaciones = new ArrayList<>();
-        this.listaReservas = new ArrayList<>();
-    }
+        listaHuespedes = new ArrayList<>();
+        listaHabitaciones = new ArrayList<>();
+        listaReservas = new ArrayList<>();
 
-    public String getNombreComercial() {
-        return nombreComercial;
-    }
-
-    public void setNombreComercial(String nombreComercial) {
-        this.nombreComercial = nombreComercial;
-    }
-
-    public String getNit() {
-        return nit;
-    }
-
-    public void setNit(String nit) {
-        this.nit = nit;
-    }
-
-    public String getDireccion() {
-        return direccion;
-    }
-
-    public void setDireccion(String direccion) {
-        this.direccion = direccion;
-    }
-
-    public String getTelefono() {
-        return telefono;
-    }
-
-    public void setTelefono(String telefono) {
-        this.telefono = telefono;
-    }
-
-    public List<Huesped> getListaHuespedes() {
-        return listaHuespedes;
-    }
-
-    public List<Habitacion> getListaHabitaciones() {
-        return listaHabitaciones;
-    }
-
-    public List<Reserva> getListaReservas() {
-        return listaReservas;
+        ocupacionSemanal = new int[7];
     }
 
     public void agregarHuesped(Huesped huesped) {
+
         if (huesped != null) {
             listaHuespedes.add(huesped);
         }
     }
 
     public void agregarHabitacion(Habitacion habitacion) {
+
         if (habitacion != null) {
             listaHabitaciones.add(habitacion);
         }
     }
 
     public void agregarReserva(Reserva reserva) {
+
         if (reserva != null) {
             listaReservas.add(reserva);
         }
@@ -94,6 +57,7 @@ public class Hotel {
     public Huesped buscarHuesped(String id) {
 
         for (Huesped huesped : listaHuespedes) {
+
             if (huesped.getId().equals(id)) {
                 return huesped;
             }
@@ -105,6 +69,7 @@ public class Hotel {
     public Habitacion buscarHabitacion(int numero) {
 
         for (Habitacion habitacion : listaHabitaciones) {
+
             if (habitacion.getNumeroHabitacion() == numero) {
                 return habitacion;
             }
@@ -118,12 +83,61 @@ public class Hotel {
         List<Habitacion> disponibles = new ArrayList<>();
 
         for (Habitacion habitacion : listaHabitaciones) {
+
             if (habitacion.estaDisponible()) {
                 disponibles.add(habitacion);
             }
         }
 
         return disponibles;
+    }
+
+    public void registrarOcupacion(DiaSemana dia, int cantidad) {
+
+        ocupacionSemanal[dia.ordinal()] = cantidad;
+    }
+
+    public int diaConMayorOcupacion() {
+
+        int mayor = ocupacionSemanal[0];
+        int dia = 0;
+
+        for (int i = 1; i < ocupacionSemanal.length; i++) {
+
+            if (ocupacionSemanal[i] > mayor) {
+                mayor = ocupacionSemanal[i];
+                dia = i;
+            }
+        }
+
+        return dia;
+    }
+
+    public int diaConMenorOcupacion() {
+
+        int menor = ocupacionSemanal[0];
+        int dia = 0;
+
+        for (int i = 1; i < ocupacionSemanal.length; i++) {
+
+            if (ocupacionSemanal[i] < menor) {
+                menor = ocupacionSemanal[i];
+                dia = i;
+            }
+        }
+
+        return dia;
+    }
+
+    public int cantidadTotalHabitacionesOcupadasDuranteLaSemana() {
+
+        int total = 0;
+
+        for (int cantidad : ocupacionSemanal) {
+            total += cantidad;
+        }
+
+        return total;
     }
 
     public double calcularIngresos() {
@@ -140,5 +154,33 @@ public class Hotel {
         }
 
         return ingresos;
+    }
+
+    public String getNombreComercial() {
+        return nombreComercial;
+    }
+
+    public String getNit() {
+        return nit;
+    }
+
+    public String getDireccion() {
+        return direccion;
+    }
+
+    public String getTelefono() {
+        return telefono;
+    }
+
+    public List<Huesped> getListaHuespedes() {
+        return listaHuespedes;
+    }
+
+    public List<Habitacion> getListaHabitaciones() {
+        return listaHabitaciones;
+    }
+
+    public List<Reserva> getListaReservas() {
+        return listaReservas;
     }
 }
